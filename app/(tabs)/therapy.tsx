@@ -5,7 +5,7 @@ import axios from "axios";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TherapyScreen() {
-  const [users, setUsers] = useState<Therapist[] | []>([]);
+  const [users, setUsers] = useState<Therapist[] | null>(null);
 
   useEffect(() => {
     axios
@@ -18,12 +18,18 @@ export default function TherapyScreen() {
       });
   }, []);
 
+  if (users == null) {
+    return (
+      <SafeAreaView>
+        <Text>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
   return (
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: "rgba(33,33,33,100)",
-        
       }}
     >
       <FlatList
@@ -36,6 +42,7 @@ export default function TherapyScreen() {
             name={item.name}
             speciality={item.speciality}
             experience={item.experience}
+            id={item.id}
           />
         )}
       />

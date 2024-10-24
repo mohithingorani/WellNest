@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Link } from "expo-router";
 
 export interface Therapist {
   id: String;
@@ -16,10 +17,12 @@ export function TherapistCard({
   name,
   speciality,
   experience,
+  id,
 }: {
   name: String;
   speciality: String;
   experience: String;
+  id: String;
 }) {
   return (
     <SafeAreaView style={styles.outerContainer}>
@@ -32,7 +35,9 @@ export function TherapistCard({
             }}
           />
           <View style={styles.imageCardText}>
-            <Text style={styles.innerText}>View Profile</Text>
+            <TouchableOpacity>
+              <Text style={styles.innerText}>View Profile</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.innerContainer}>
@@ -89,11 +94,13 @@ export function TherapistCard({
             <Text style={{ color: "gray" }}>for 60 mins consultation</Text>
           </View>
           <TouchableOpacity>
-            <View style={styles.Button}>
-              <Text style={{ color: "black", fontWeight: "bold" }}>
-                Book Appointment
-              </Text>
-            </View>
+            <Link href={{ pathname: "/booking/[id]", params: { id: `${id}` } }}>
+              <View style={styles.Button}>
+                <Text style={{ color: "black", fontWeight: "bold" }}>
+                  Book Appointment
+                </Text>
+              </View>
+            </Link>
           </TouchableOpacity>
         </View>
       </View>
@@ -109,10 +116,10 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     backgroundColor: "rgba(40,40,40,100)",
     paddingHorizontal: 13,
-    borderRadius: 10,
+    borderRadius: 20,
     shadowColor: "black",
     borderColor: "rgba(54,54,54,100)",
-    borderWidth: 2,
+    borderWidth: 1,
     paddingBottom: 20,
   },
   imageCardText: {
@@ -134,8 +141,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   image: {
-    width: 130,
-    height: 130,
+    width: 120,
+    height: 120,
     borderRadius: 10,
   },
   text: {
@@ -144,7 +151,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     flexDirection: "column",
     flex: 1,
-    gap: 6,
+    gap: 4,
     paddingLeft: 15,
   },
   Button: {
