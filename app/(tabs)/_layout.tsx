@@ -1,34 +1,55 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Entypo from "@expo/vector-icons/Entypo";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Octicons from "@expo/vector-icons/Octicons";
+import { View } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+        tabBarInactiveBackgroundColor: "rgba(25,25,25,100)",
+        tabBarActiveBackgroundColor: "rgba(25,25,25,100)",
+        tabBarStyle: { borderTopWidth: 0 },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Discover",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <Entypo name="magnifying-glass" size={24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="assess"
         options={{
-          title: 'Explore',
+          title: "Assess",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <MaterialIcons name="assessment" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="therapy"
+        options={{
+          title: "Therapy",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons name="head-heart" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="insights"
+        options={{
+          title: "Insights",
+          tabBarIcon: ({ color, focused }) => (
+            <Octicons name="stack" size={24} color={color} />
           ),
         }}
       />
