@@ -25,13 +25,13 @@ export function TherapistCard({
   id: String;
 }) {
   return (
-    <SafeAreaView style={styles.outerContainer}>
+    <View style={styles.outerContainer}>
       <View style={styles.container}>
         <View>
           <Image
             style={styles.image}
             source={{
-              uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpkefWmjBGQciTPmc9qOdz_Y2eEmIs9Qo-HA&s",
+              uri: "https://medavas.com/wp-content/uploads/2024/07/samiksha-psychologist-new-delhi-india.jpg",
             }}
           />
           <View style={styles.imageCardText}>
@@ -104,7 +104,7 @@ export function TherapistCard({
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   outerContainer: {
+    paddingTop: 13,
     marginBottom: 18,
     backgroundColor: "rgba(40,40,40,100)",
     paddingHorizontal: 13,
