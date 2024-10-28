@@ -26,12 +26,19 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
+    <Stack screenOptions={{}}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
       <Stack.Screen
         name="booking/[id]"
-        options={{ title: "Booking Details" }}
+        options={{
+          title: "Booking Details",
+          headerTintColor: "white",
+          headerStyle: {
+            backgroundColor: "rgba(33,33,33,100)",
+            
+          },
+        }}
       />
     </Stack>
   );

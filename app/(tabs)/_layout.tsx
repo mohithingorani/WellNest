@@ -26,9 +26,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Discover",
+          title: "AI Chat",
           tabBarIcon: ({ color, focused }) => (
-            <Entypo name="magnifying-glass" size={24} color={color} />
+            <Entypo name="chat" size={24} color={color} />
           ),
         }}
       />

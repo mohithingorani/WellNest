@@ -12,7 +12,7 @@ export default function TherapyScreen() {
 
   useEffect(() => {
     axios
-      .get("http://10.171.139.240:3000/users")
+      .get("http://192.168.29.247:3000/users")
       .then((response) => {
         setUsers(response.data);
       })
@@ -69,7 +69,7 @@ export default function TherapyScreen() {
           if (text == "") {
             return item;
           } else {
-            return item.name.toLowerCase().includes(text.toLowerCase());
+            return item.name.toLowerCase().includes(text.toLowerCase().trim());
           }
         })}
         renderItem={({ item }) => (
