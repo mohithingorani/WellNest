@@ -31,12 +31,10 @@ export function TextMessage({
               maxWidth: "50%",
               backgroundColor: "rgba(26,102,255,100)",
               color: "white",
-              fontSize: 18,
+              fontSize: 14,
               paddingHorizontal: 14,
               paddingVertical: 10,
-              borderTopLeftRadius: 10,
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
+              borderRadius: 10,
             }}
           >
             {messageObject.message}
@@ -63,12 +61,10 @@ export function TextMessage({
               maxWidth: "50%",
               backgroundColor: "rgba(27,27,27,100)",
               color: "white",
-              fontSize: 18,
+              fontSize: 14,
               paddingHorizontal: 14,
               paddingVertical: 10,
-              borderTopRightRadius: 10,
-              borderBottomLeftRadius: 10,
-              borderBottomRightRadius: 10,
+              borderRadius: 10,
             }}
           >
             {messageObject.message.trimEnd()}

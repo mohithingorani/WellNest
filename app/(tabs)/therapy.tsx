@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 17,
-    color: "gray",
+    color: "gray",  
     flex: 1, // Make input take remaining space
   },
   searchBoxFocused: {
