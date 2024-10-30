@@ -19,9 +19,10 @@ export default function TabLayout() {
           borderBottomWidth: 0,
           shadowColor: "transparent",
         },
+
         tabBarInactiveBackgroundColor: "rgba(25,25,25,100)",
         tabBarActiveBackgroundColor: "rgba(25,25,25,100)",
-        tabBarStyle: { borderTopWidth: 0 },
+        tabBarStyle: { borderTopWidth: 0,paddingVertical:8,backgroundColor:"rgba(25,25,25,100)" },
       }}
     >
       <Tabs.Screen
