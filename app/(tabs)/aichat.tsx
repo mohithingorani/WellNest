@@ -132,7 +132,7 @@ export default function AICHAT() {
 
   return (
     <SafeAreaView style={styles.outestContainer}>
-      <SafeAreaView style={styles.outerContainer} >
+      <SafeAreaView style={styles.outerContainer}>
         <View
           style={{
             borderBottomWidth: 0.5,
@@ -217,19 +217,25 @@ export default function AICHAT() {
           style={{ backgroundColor: "black" }}
           onPress={() => handleSendMessage()}
         >
-          <Text
+          <View
             style={{
               height: "auto",
-              backgroundColor: "white",
-              color: "black",
-              borderRadius: 0.2,
+              backgroundColor: "rgba(32,161,141,100)",
+              borderRadius: 15,
               borderWidth: 1,
-              paddingHorizontal: 10,
-              paddingVertical: 8,
+              paddingVertical : 10,
+              paddingHorizontal : 10,
+              marginRight:5
             }}
           >
-            Send
-          </Text>
+            <Text
+              style={{
+                color: "black",
+                }}
+            >
+              Send
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -253,4 +259,3 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
 });
-

@@ -37,7 +37,7 @@ export default function AssessScreen() {
         style={styles.flatListStyle}
       />
     </SafeAreaView>
-  );
+  );  
 }
 
 const styles = StyleSheet.create({

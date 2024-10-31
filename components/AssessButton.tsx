@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "white",
+
     height: 40,
     marginRight: 10,
   },
@@ -46,10 +47,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingVertical: 10,
     paddingHorizontal: 20,
+    
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "white",
+    
     height: 40,
     marginRight: 10,
-  },
+  },    
 });
