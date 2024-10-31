@@ -1,16 +1,14 @@
 import { AssessButton } from "@/components/AssessButton";
+import { PastReportCard } from "@/components/PastReportsCard";
 import { useState } from "react";
-import { FlatList, StyleSheet, SafeAreaView } from "react-native";
+import { FlatList, StyleSheet, SafeAreaView, View, Text } from "react-native";
 
 const items = [
   { id: "1", title: "General Mental Health" },
-  { id: "2", title: "Anxiety" },
-  { id: "3", title: "Depression" },
-  { id: "4", title: "Trauma" },
-  { id: "5", title: "Substance Abuse" },
-  { id: "6", title: "Relationships" },
-  { id: "7", title: "Neurodivergence" },
-  { id: "8", title: "Quality of Life" },
+  { id: "2", title: "Quality of life" },
+  { id: "3", title: "Neurodivergence" },
+  { id: "4", title: "Relationships" },
+  { id: "5", title: "Trauma" },
 ];
 
 export default function AssessScreen() {
@@ -22,6 +20,8 @@ export default function AssessScreen() {
 
   return (
     <SafeAreaView style={styles.outerContainer}>
+      
+      <PastReportCard />
       <FlatList
         data={items}
         renderItem={({ item }) => (
