@@ -19,8 +19,6 @@ export default function AICHAT() {
   const [inbox, setInbox] = useState<MessageObject[]>([]);
   const [message, setMessage] = useState<string>("");
   const [Error, setError] = useState<boolean>(false);
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [response, setResponse] = useState<string | null>(null);
   const [onlineStatus, setOnlineStatus] = useState<string>("Online");
 
@@ -66,7 +64,6 @@ export default function AICHAT() {
     ];
     setContext(newContext);
     setMessage("");
-    setIsLoading(true);
     try {
       // console.log("Fetching value with context:", context);
       const responseText = await fetchValue(message, context);
@@ -92,7 +89,6 @@ export default function AICHAT() {
 
       setError(true);
     } finally {
-      setIsLoading(false);
       setOnlineStatus("Online");
     }
   }
