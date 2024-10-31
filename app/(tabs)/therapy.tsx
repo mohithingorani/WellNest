@@ -1,6 +1,13 @@
 import { Therapist, TherapistCard } from "@/components/TherapistCard";
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import axios from "axios";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -23,9 +30,24 @@ export default function TherapyScreen() {
 
   if (users == null) {
     return (
-      <SafeAreaView>
-        <Text>Loading...</Text>
-      </SafeAreaView>
+      
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "rgba(33,33,33,100)",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        
+        <ActivityIndicator
+          style={{
+            height: 100,
+          }}
+          size="large"
+          color="rgba(32,161,141,100)"
+        />
+      </View>
     );
   }
 
@@ -105,7 +127,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 17,
-    color: "gray",  
+    color: "gray",
     flex: 1, // Make input take remaining space
   },
   searchBoxFocused: {
