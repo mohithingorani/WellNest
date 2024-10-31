@@ -22,20 +22,15 @@ export default function TabLayout() {
 
         tabBarInactiveBackgroundColor: "rgba(25,25,25,100)",
         tabBarActiveBackgroundColor: "rgba(25,25,25,100)",
-        tabBarStyle: { borderTopWidth: 0,paddingVertical:8,backgroundColor:"rgba(25,25,25,100)" },
+        tabBarStyle: {
+          borderTopWidth: 0,
+          paddingVertical: 8,
+          backgroundColor: "rgba(25,25,25,100)",
+        },
       }}
     >
       <Tabs.Screen
         name="index"
-        options={{
-          title: "AI Chat",
-          tabBarIcon: ({ color, focused }) => (
-            <Entypo name="chat" size={24} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="assess"
         options={{
           title: "Assess",
           tabBarIcon: ({ color, focused }) => (
@@ -43,6 +38,16 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="aichat"
+        options={{
+          title: "AI Chat",
+          tabBarIcon: ({ color, focused }) => (
+            <Entypo name="chat" size={24} color={color} />
+          ),
+        }}
+      />
+
       <Tabs.Screen
         name="therapy"
         options={{
