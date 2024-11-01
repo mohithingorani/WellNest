@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Link } from "expo-router";
 export default function SignupIntro() {
   return (
     <SafeAreaView
@@ -36,12 +37,16 @@ export default function SignupIntro() {
           marginTop: 50,
         }}
       >
-        <View style={styles.signupbutton}>
-          <Ionicons name="mail" size={24} color="white" />
+        <Link href={"/signupEmail"} asChild>
+          <TouchableOpacity style={styles.signupbutton}>
+            <Ionicons name="mail" size={24} color="white" />
 
-          <Text style={{ color: "white" }}>Sign Up with Email</Text>
-        </View>
-        <Text style={{textAlign:"center",color:"gray",fontSize:18}}>or</Text>
+            <Text style={{ color: "white" }}>Sign Up with Email</Text>
+          </TouchableOpacity>
+        </Link>
+        <Text style={{ textAlign: "center", color: "gray", fontSize: 18 }}>
+          or
+        </Text>
         <View style={styles.signupbutton}>
           <Image
             source={{
