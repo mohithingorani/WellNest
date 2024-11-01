@@ -78,7 +78,7 @@ export default function RoughWeek() {
           </View>
         }
         ListFooterComponent={
-          <Link href={"/(tabs)"} asChild>
+          <Link href={"/signupIntro"} asChild>
             <TouchableOpacity
               style={{
                 backgroundColor: "rgba(1,126,91,100)",

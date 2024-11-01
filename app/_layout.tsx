@@ -31,6 +31,7 @@ export default function RootLayout() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="genderScreen" options={{ headerShown: false }} />
       <Stack.Screen name="healthConcern" options={{ headerShown: false }} />
+      <Stack.Screen name="roughWeek" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
       <Stack.Screen
