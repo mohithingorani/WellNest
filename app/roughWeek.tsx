@@ -10,17 +10,17 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const data = [
-  { id: 1, option: "Thyroid" },
-  { id: 2, option: "Diabetes" },
-  { id: 3, option: "High Blood Pressure" },
-  { id: 4, option: "PCOS" },
-  { id: 5, option: "Neurological Concerns" },
-  { id: 6, option: "Hypertension" },
-  { id: 7, option: "Respiratory Concerns" },
-  { id: 8, option: "Heart Disease" },
+  { id: 1, option: "Nausea" },
+  { id: 2, option: "Muscle Stiffness or Pain" },
+  { id: 3, option: "Fatigue" },
+  { id: 4, option: "Sleep Disturbance" },
+  { id: 5, option: "Mood Swings or Irritability" },
+  { id: 6, option: "Weight Fluctuations" },
+  { id: 7, option: "Stomach Upset" },
+  { id: 8, option: "Increased / Excessive Sweating" },
 ];
 
-export default function HealthConcern() {
+export default function RoughWeek() {
   const [selectedOptions, setSelectedOptions] = useState<string[] | null>([]);
 
   const handleOptionPress = (option: string) => {
@@ -39,7 +39,13 @@ export default function HealthConcern() {
         paddingHorizontal: 20,
       }}
     >
-      <View style={{flexDirection:"row",marginTop:30,justifyContent:"space-between"}}>
+      <View
+        style={{
+          flexDirection: "row",
+          marginTop: 30,
+          justifyContent: "space-between",
+        }}
+      >
         <View
           style={{
             backgroundColor: "rgba(1,126,91,100)",
@@ -50,16 +56,15 @@ export default function HealthConcern() {
         />
         <View
           style={{
-            backgroundColor: "gray",
+            backgroundColor: "rgba(1,126,91,100)",
             minHeight: 10,
             minWidth: "48%",
             borderRadius: 20,
           }}
         />
-        
       </View>
       <Text style={styles.headingText}>
-        Any health concerns we should know about?
+        Feeling the pressure lately? Let us know if it's been a rough week.
       </Text>
       <Text style={styles.subHeadingText}>
         You can select more than one option.
@@ -84,7 +89,7 @@ export default function HealthConcern() {
           );
         }}
       />
-      <Link href={"/roughWeek"} asChild>
+      <Link href={"/(tabs)"} asChild>
         <TouchableOpacity
           style={{
             backgroundColor: "rgba(1,126,91,100)",
@@ -107,6 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginTop: 30,
     fontWeight: "bold",
+    lineHeight: 28,
   },
   subHeadingText: {
     color: "gray",
