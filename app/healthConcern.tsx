@@ -39,33 +39,59 @@ export default function HealthConcern() {
         paddingHorizontal: 20,
       }}
     >
-      <View style={{flexDirection:"row",marginTop:30,justifyContent:"space-between"}}>
-        <View
-          style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            minHeight: 10,
-            minWidth: "48%",
-            borderRadius: 20,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: "gray",
-            minHeight: 10,
-            minWidth: "48%",
-            borderRadius: 20,
-          }}
-        />
-        
-      </View>
-      <Text style={styles.headingText}>
-        Any health concerns we should know about?
-      </Text>
-      <Text style={styles.subHeadingText}>
-        You can select more than one option.
-      </Text>
-
       <FlatList
+      showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View style={{ marginBottom: 20 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 30,
+                justifyContent: "space-between",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "rgba(1,126,91,100)",
+                  minHeight: 10,
+                  minWidth: "48%",
+                  borderRadius: 20,
+                }}
+              />
+              <View
+                style={{
+                  backgroundColor: "gray",
+                  minHeight: 10,
+                  minWidth: "48%",
+                  borderRadius: 20,
+                }}
+              />
+            </View>
+            <Text style={styles.headingText}>
+              Any health concerns we should know about?
+            </Text>
+            <Text style={styles.subHeadingText}>
+              You can select more than one option.
+            </Text>
+          </View>
+        }
+        ListFooterComponent={
+          <Link href={"/roughWeek"} asChild>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "rgba(1,126,91,100)",
+                paddingVertical: 20,
+                borderRadius: 20,
+                marginTop: 20,
+                marginBottom: 20,
+              }}
+            >
+              <Text style={{ textAlign: "center", color: "white" }}>
+                Continue
+              </Text>
+            </TouchableOpacity>
+          </Link>
+        }
         style={{ marginTop: 20 }}
         data={data}
         renderItem={({ item }) => {
@@ -84,19 +110,6 @@ export default function HealthConcern() {
           );
         }}
       />
-      <Link href={"/roughWeek"} asChild>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            paddingVertical: 20,
-            borderRadius: 20,
-            marginTop: 20,
-            marginBottom: 20,
-          }}
-        >
-          <Text style={{ textAlign: "center", color: "white" }}>Continue</Text>
-        </TouchableOpacity>
-      </Link>
     </SafeAreaView>
   );
 }

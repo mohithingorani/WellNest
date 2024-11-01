@@ -39,40 +39,62 @@ export default function RoughWeek() {
         paddingHorizontal: 20,
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: 30,
-          justifyContent: "space-between",
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            minHeight: 10,
-            minWidth: "48%",
-            borderRadius: 20,
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            minHeight: 10,
-            minWidth: "48%",
-            borderRadius: 20,
-          }}
-        />
-      </View>
-      <Text style={styles.headingText}>
-        Feeling the pressure lately? Let us know if it's been a rough week.
-      </Text>
-      <Text style={styles.subHeadingText}>
-        You can select more than one option.
-      </Text>
-
       <FlatList
         style={{ marginTop: 20 }}
         data={data}
+        ListHeaderComponent={
+          <View style={{ marginBottom: 20 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 30,
+                justifyContent: "space-between",
+              }}
+            >
+              <View
+                style={{
+                  backgroundColor: "rgba(1,126,91,100)",
+                  minHeight: 10,
+                  minWidth: "48%",
+                  borderRadius: 20,
+                }}
+              />
+              <View
+                style={{
+                  backgroundColor: "rgba(1,126,91,100)",
+                  minHeight: 10,
+                  minWidth: "48%",
+                  borderRadius: 20,
+                }}
+              />
+            </View>
+            <Text style={styles.headingText}>
+              Feeling the pressure lately? Let us know if it's been a rough
+              week.
+            </Text>
+            <Text style={styles.subHeadingText}>
+              You can select more than one option.
+            </Text>
+          </View>
+        }
+        ListFooterComponent={
+          <Link href={"/(tabs)"} asChild>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "rgba(1,126,91,100)",
+                paddingVertical: 20,
+                borderRadius: 20,
+                marginTop: 20,
+                marginBottom: 20,
+              }}
+            >
+              <Text style={{ textAlign: "center", color: "white" }}>
+                Continue
+              </Text>
+            </TouchableOpacity>
+          </Link>
+        }
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity onPress={() => handleOptionPress(item.option)}>
@@ -89,19 +111,6 @@ export default function RoughWeek() {
           );
         }}
       />
-      <Link href={"/(tabs)"} asChild>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            paddingVertical: 20,
-            borderRadius: 20,
-            marginTop: 20,
-            marginBottom: 20,
-          }}
-        >
-          <Text style={{ textAlign: "center", color: "white" }}>Continue</Text>
-        </TouchableOpacity>
-      </Link>
     </SafeAreaView>
   );
 }
