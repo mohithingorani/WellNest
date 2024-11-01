@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
 export default function StartingPage() {
@@ -51,26 +52,34 @@ export default function StartingPage() {
           >
             Let's start your journey with WellNest
           </Text>
-          <TouchableOpacity
+          <Link href={"/genderScreen"} asChild>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "white",
+                flexDirection: "row",
+                justifyContent: "center",
+                borderRadius: 10,
+                paddingHorizontal: 10,
+                paddingVertical: 12,
+                alignItems: "center",
+                marginHorizontal: 40,
+              }}
+            >
+              <Text>Get Started</Text>
+            </TouchableOpacity>
+          </Link>
+
+          <View
             style={{
-              backgroundColor: "white",
               flexDirection: "row",
               justifyContent: "center",
-              borderRadius: 10,
-              paddingHorizontal: 10,
-              paddingVertical: 12,
               alignItems: "center",
-              marginHorizontal: 40,
             }}
           >
-            <Text style={{ color: "black" }}>GET STARTED</Text>
-          </TouchableOpacity>
-          <View style={{ flexDirection: "row", justifyContent: "center",alignItems:"center" }}>
-            <Text style={{ color: "white" }}>
-              Already have an account?{" "}</Text>
-              <TouchableOpacity>
-                <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
-              </TouchableOpacity>
+            <Text style={{ color: "white" }}>Already have an account? </Text>
+            <TouchableOpacity>
+              <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
