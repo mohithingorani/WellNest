@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -178,7 +179,9 @@ export default function SignUpWithEmail() {
             }}
           >
             Already have an account?{" "}
-            <Text style={{ color: "white" }}>Log In</Text>
+            <Link href={"/signinEmail"} >
+              <Text style={{ color: "white" }}>Log In</Text>
+            </Link>
           </Text>
         </View>
       </SafeAreaView>

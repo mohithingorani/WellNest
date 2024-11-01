@@ -78,7 +78,9 @@ export default function StartingPage() {
           >
             <Text style={{ color: "white" }}>Already have an account? </Text>
             <TouchableOpacity>
-              <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
+              <Link href="/signinEmail">
+                <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
+              </Link>
             </TouchableOpacity>
           </View>
         </View>
