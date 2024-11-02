@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   FlatList,
   ScrollView,
+  Keyboard,
 } from "react-native";
 
 import { GoogleGenerativeAI } from "@google/generative-ai"; // Use ES6 import
@@ -23,11 +24,33 @@ export default function AICHAT() {
   const [onlineStatus, setOnlineStatus] = useState<string>("Online");
 
   const scrollViewRef = useRef<any>(null);
+
   useEffect(() => {
     if (scrollViewRef.current) {
-      scrollViewRef.current?.scrollToEnd({ animated: true });
+      scrollViewRef.current?.scrollToEnd({ offset: 0, animated: true });
     }
   }, [inbox]);
+
+
+  
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollToEnd({ animated: true });
+      }
+    });
+
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollToEnd({ animated: true });
+      }
+    });
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
 
   interface MessageObject {
     message: string;
@@ -103,23 +126,9 @@ export default function AICHAT() {
       });
 
       const myPrompt = `
-        You are a content generator for my website. 
-        Please provide clear, concise, and engaging text responses based on the input prompt. 
-        You are a therapist who provides online therapy. Be very friendly and supportive.
-        Understand the context and provide a response that is relevant to the user&apos;s input.
-        uses Cognitive Behavioral Therapy (CBT), mindfulness techniques, and stress management tools to help  feel more in control of their emotions.
-        Do not use stars or any special characters in your responses. 
-        Only output plain text. 
-        Try to make small responses as it is chat. Not compulsory, just a suggestion.
-        Don&apos;t use * or # in response.    
-        Make the content short.
-        This is the context: (basically the summary of your chat)"${JSON.stringify(
+        You are a friendly and supportive therapist providing online therapy. Your responses should be clear, concise, and engaging. Use Cognitive Behavioral Therapy (CBT) and mindfulness techniques to help users feel in control of their emotions. Your response should be directly related to the user's input and considerate of the context of the conversation, which is: "${JSON.stringify(
           context
-        )}".
-        The content should be suitable for a general audience and formatted appropriately for web display. 
-        Make sure the response is informative, accurate, and directly related to the input prompt.
-        The prompt is: ${prompt}.
-      `;
+        )}". Avoid using special characters, stars, or hashtags in your responses. Keep your replies short and conversational, suitable for chat. The prompt is: "${prompt}".`;
 
       const result = await model.generateContent(myPrompt);
       console.log(result.response.text);
@@ -171,7 +180,7 @@ export default function AICHAT() {
         </View>
         <FlatList
           ref={scrollViewRef}
-          style={{ padding: 10 }}
+          style={{ paddingHorizontal: 10, paddingBottom: 36 }}
           data={inbox}
           renderItem={({ item }) => (
             <TextMessage key={item.id} messageObject={item} />
@@ -223,15 +232,15 @@ export default function AICHAT() {
               backgroundColor: "rgba(32,161,141,100)",
               borderRadius: 15,
               borderWidth: 1,
-              paddingVertical : 10,
-              paddingHorizontal : 10,
-              marginRight:5
+              paddingVertical: 10,
+              paddingHorizontal: 10,
+              marginRight: 5,
             }}
           >
             <Text
               style={{
                 color: "black",
-                }}
+              }}
             >
               Send
             </Text>
