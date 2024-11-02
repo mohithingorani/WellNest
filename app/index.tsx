@@ -3,8 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import axios from "axios";
-import { atom, RecoilRoot, useRecoilState } from "recoil";
-import { registerRootComponent } from "expo";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { userAtom } from "./atoms/userAtoms";
 
 
@@ -40,7 +39,7 @@ const [user,setUser] = useRecoilState(userAtom);
         }
       } else {
         // No token found, navigate to login
-        router.replace("/authentication/signinEmail");
+        router.replace("/welcomePage");
       }
     };
 

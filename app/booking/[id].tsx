@@ -41,7 +41,7 @@ export default function Booking() {
         <Text style={styles.label}>Describe the concerns you are facing</Text>
         <TextInput
           style={styles.textArea}
-          placeholder="Tell us what brings you to therapy:thoughts, concerns or anything that you'd want your mindcoach to know before hand"
+          placeholder="Tell us what brings you to therapy: thoughts, concerns or anything that you'd want your mindcoach to know before hand"
           placeholderTextColor="gray"
           multiline={true}
           maxLength={250}
