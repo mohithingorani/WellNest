@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import {
   ActivityIndicator,
@@ -13,33 +13,39 @@ import {
 } from "react-native";
 import { useHandler } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRecoilState } from "recoil";
+import { userAtom } from "../atoms/userAtoms";
 
 export default function SignUpWithEmail() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [user, setUser] = useRecoilState(userAtom);
   const [loading, setLoading] = useState<boolean>(false);
   function handleCreateAccount() {
     setLoading(true);
-    const account = axios
-      .post("http://192.168.29.247:3000/user", {
-        name: name,
-        email: email,
-        phoneNumber: Number(phoneNumber),
-        password: password,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-    return account;
+    try {
+      const account = axios
+        .post("http://192.168.29.247:3000/user", {
+          name: name,
+          email: email,
+          phoneNumber: Number(phoneNumber),
+          password: password,
+        })
+        .then((response) => {
+          console.log(response.data);
+          setLoading(false);
+          alert("Account created successfully");
+          setUser(response.data.userId);
+          router.replace("/(tabs)");
+
+        });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (loading) {
@@ -179,7 +185,7 @@ export default function SignUpWithEmail() {
             }}
           >
             Already have an account?{" "}
-            <Link href={"/authentication/signinEmail"} >
+            <Link href={"/authentication/signinEmail"}>
               <Text style={{ color: "white" }}>Log In</Text>
             </Link>
           </Text>
