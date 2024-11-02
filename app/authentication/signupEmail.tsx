@@ -179,7 +179,7 @@ export default function SignUpWithEmail() {
             }}
           >
             Already have an account?{" "}
-            <Link href={"/signinEmail"} >
+            <Link href={"/authentication/signinEmail"} >
               <Text style={{ color: "white" }}>Log In</Text>
             </Link>
           </Text>

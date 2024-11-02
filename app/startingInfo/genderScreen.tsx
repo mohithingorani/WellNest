@@ -34,7 +34,7 @@ export default function GennderScreen() {
   const handleOptionPress = (option: string) => {
     setSelectedOption(option);
     setTimeout(() => {
-      router.push("/healthConcern");
+      router.push("./healthConcern");
     }, 200);
   };
   return (

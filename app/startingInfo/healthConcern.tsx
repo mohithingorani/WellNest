@@ -10,17 +10,17 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const data = [
-  { id: 1, option: "Nausea" },
-  { id: 2, option: "Muscle Stiffness or Pain" },
-  { id: 3, option: "Fatigue" },
-  { id: 4, option: "Sleep Disturbance" },
-  { id: 5, option: "Mood Swings or Irritability" },
-  { id: 6, option: "Weight Fluctuations" },
-  { id: 7, option: "Stomach Upset" },
-  { id: 8, option: "Increased / Excessive Sweating" },
+  { id: 1, option: "Thyroid" },
+  { id: 2, option: "Diabetes" },
+  { id: 3, option: "High Blood Pressure" },
+  { id: 4, option: "PCOS" },
+  { id: 5, option: "Neurological Concerns" },
+  { id: 6, option: "Hypertension" },
+  { id: 7, option: "Respiratory Concerns" },
+  { id: 8, option: "Heart Disease" },
 ];
 
-export default function RoughWeek() {
+export default function HealthConcern() {
   const [selectedOptions, setSelectedOptions] = useState<string[] | null>([]);
 
   const handleOptionPress = (option: string) => {
@@ -40,8 +40,7 @@ export default function RoughWeek() {
       }}
     >
       <FlatList
-        style={{ marginTop: 20 }}
-        data={data}
+      showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View style={{ marginBottom: 20 }}>
             <View
@@ -61,7 +60,7 @@ export default function RoughWeek() {
               />
               <View
                 style={{
-                  backgroundColor: "rgba(1,126,91,100)",
+                  backgroundColor: "gray",
                   minHeight: 10,
                   minWidth: "48%",
                   borderRadius: 20,
@@ -69,8 +68,7 @@ export default function RoughWeek() {
               />
             </View>
             <Text style={styles.headingText}>
-              Feeling the pressure lately? Let us know if it's been a rough
-              week.
+              Any health concerns we should know about?
             </Text>
             <Text style={styles.subHeadingText}>
               You can select more than one option.
@@ -78,7 +76,7 @@ export default function RoughWeek() {
           </View>
         }
         ListFooterComponent={
-          <Link href={"/signupIntro"} asChild>
+          <Link href={"./roughWeek"} asChild>
             <TouchableOpacity
               style={{
                 backgroundColor: "rgba(1,126,91,100)",
@@ -94,7 +92,8 @@ export default function RoughWeek() {
             </TouchableOpacity>
           </Link>
         }
-        showsVerticalScrollIndicator={false}
+        style={{ marginTop: 20 }}
+        data={data}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity onPress={() => handleOptionPress(item.option)}>
@@ -121,7 +120,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginTop: 30,
     fontWeight: "bold",
-    lineHeight: 28,
   },
   subHeadingText: {
     color: "gray",

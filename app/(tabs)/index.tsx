@@ -1,6 +1,7 @@
 import { AssessButton } from "@/components/AssessButton";
 import { PastReportCard } from "@/components/PastReportsCard";
-import { useState } from "react";
+import { router } from "expo-router";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, SafeAreaView, View, Text } from "react-native";
 
 const items = [
@@ -16,11 +17,11 @@ export default function AssessScreen() {
     setSelectedId(id);
   };
 
+
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
     <SafeAreaView style={styles.outerContainer}>
-      
       <PastReportCard />
       <FlatList
         data={items}
@@ -37,7 +38,7 @@ export default function AssessScreen() {
         style={styles.flatListStyle}
       />
     </SafeAreaView>
-  );  
+  );
 }
 
 const styles = StyleSheet.create({

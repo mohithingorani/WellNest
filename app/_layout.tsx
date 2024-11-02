@@ -26,24 +26,15 @@ export default function RootLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
         headerStyle: {
           backgroundColor: "rgba(33,33,33,100)",
         },
-        headerTintColor:"white"
+        headerTintColor: "white",
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="genderScreen" options={{ headerShown: false }} />
-      <Stack.Screen name="healthConcern" options={{ headerShown: false }} />
-      <Stack.Screen name="roughWeek" options={{ headerShown: false }} />
-      <Stack.Screen name="signupIntro" options={{ headerShown: false }} />
-      <Stack.Screen name="signupEmail" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="signinEmail"
-        options={{ title: "", headerShown: true }}
-    
-    />
+      <Stack.Screen name="startingInfo" options={{ headerShown: false }} />
+      <Stack.Screen name="authentication" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="+not-found" />
       <Stack.Screen

@@ -37,7 +37,7 @@ export default function SignupIntro() {
           marginTop: 50,
         }}
       >
-        <Link href={"/signupEmail"} asChild>
+        <Link href={"./signupEmail"} asChild>
           <TouchableOpacity style={styles.signupbutton}>
             <Ionicons name="mail" size={24} color="white" />
 

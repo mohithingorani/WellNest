@@ -52,7 +52,7 @@ export default function StartingPage() {
           >
             Let's start your journey with WellNest
           </Text>
-          <Link href={"/genderScreen"} asChild>
+          <Link href={"/startingInfo/genderScreen"} asChild>
             <TouchableOpacity
               style={{
                 backgroundColor: "white",
@@ -78,7 +78,7 @@ export default function StartingPage() {
           >
             <Text style={{ color: "white" }}>Already have an account? </Text>
             <TouchableOpacity>
-              <Link href="/signinEmail">
+              <Link href="/authentication/signinEmail">
                 <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
               </Link>
             </TouchableOpacity>
