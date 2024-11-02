@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { View } from "react-native";
 import "react-native-reanimated";
-
+import { RecoilRoot } from "recoil";
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -24,6 +24,7 @@ export default function RootLayout() {
   }
 
   return (
+    <RecoilRoot>
     <Stack
       screenOptions={{
         headerStyle: {
@@ -33,6 +34,8 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="welcomePage" options={{ headerShown: false }} />
+
       <Stack.Screen name="startingInfo" options={{ headerShown: false }} />
       <Stack.Screen name="authentication" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -48,5 +51,6 @@ export default function RootLayout() {
         }}
       />
     </Stack>
+    </RecoilRoot>
   );
 }

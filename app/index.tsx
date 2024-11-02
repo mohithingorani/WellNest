@@ -1,90 +1,72 @@
-import { Link } from "expo-router";
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, ActivityIndicator } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
+import axios from "axios";
+import { atom, RecoilRoot, useRecoilState } from "recoil";
+import { registerRootComponent } from "expo";
+import { userAtom } from "./atoms/userAtoms";
 
-export default function StartingPage() {
+
+const App = () => {
+
+const [user,setUser] = useRecoilState(userAtom);
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await AsyncStorage.getItem("authToken");
+      if (token) {
+        // Validate token with the server
+        try {
+          const response = await axios.get(
+            "http://192.168.29.247:3000/user/validate",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          if (response.data.valid) {
+            // Token is valid, navigate to main app
+            console.log("Valid token");
+            setUser(response.data.userId);
+            router.replace("/(tabs)");
+          } else {
+            // Token is invalid, navigate to login
+            console.log("Invalid token");
+            router.replace("/authentication/signinEmail");
+          }
+        } catch (error) {
+          console.log("Error in token validation");
+          // Token validation failed, navigate to login
+          router.replace("/authentication/signinEmail");
+        }
+      } else {
+        // No token found, navigate to login
+        router.replace("/authentication/signinEmail");
+      }
+    };
+
+    checkToken();
+  }, []);
+
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "rgba(33,33,33,100)",
-      }}
-    >
-      <Text
-        style={{
-          color: "white",
-          fontSize: 20,
-          fontWeight: "bold",
-          textAlign: "center",
-          marginTop: 100,
-          marginHorizontal: 20,
-        }}
-      >
-        When was the last time you took time for yourself
-      </Text>
+    <RecoilRoot>
       <View
         style={{
           flex: 1,
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          marginBottom: 50,
           backgroundColor: "rgba(33,33,33,100)",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
-        <View
+        <ActivityIndicator
           style={{
-            backgroundColor: "rgba(1,126,91,100)",
-            marginBottom: 20,
-            paddingVertical: 40,
-            gap: 20,
-            height: 250,
-            marginHorizontal: 20,
-            borderRadius: 20,
-            flexDirection: "column",
-            rowGap: 40,
-            justifyContent: "flex-start",
+            height: 100,
           }}
-        >
-          <Text
-            style={{
-              color: "white",
-              paddingHorizontal: 40,
-            }}
-          >
-            Let's start your journey with WellNest
-          </Text>
-          <Link href={"/startingInfo/genderScreen"} asChild>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "white",
-                flexDirection: "row",
-                justifyContent: "center",
-                borderRadius: 10,
-                paddingHorizontal: 10,
-                paddingVertical: 12,
-                alignItems: "center",
-                marginHorizontal: 40,
-              }}
-            >
-              <Text>Get Started</Text>
-            </TouchableOpacity>
-          </Link>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>Already have an account? </Text>
-            <TouchableOpacity>
-              <Link href="/authentication/signinEmail">
-                <Text style={{ color: "rgba(23,51,152,100)" }}>Login in</Text>
-              </Link>
-            </TouchableOpacity>
-          </View>
-        </View>
+          size="large"
+          color="rgba(32,161,141,100)"
+        />
       </View>
-    </SafeAreaView>
+    </RecoilRoot>
   );
-}
+};
+
+export default App;

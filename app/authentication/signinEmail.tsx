@@ -9,13 +9,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRecoilState } from "recoil";
+import { userAtom } from "../atoms/userAtoms";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+  const[user,setUser] = useRecoilState(userAtom);
   function handleLogin() {
     setLoading(true);
     const account = axios
@@ -27,6 +30,7 @@ export default function Signin() {
         console.log(response.data);
         if (response.data.token) {
           await AsyncStorage.setItem("authToken", response.data.token);
+          setUser(response.data.userId);
           router.replace("/(tabs)");
         }
       })
@@ -122,6 +126,18 @@ export default function Signin() {
         >
           <Text style={{ color: "white", fontSize: 16 }}>Continue</Text>
         </TouchableOpacity>
+        <Text
+          style={{
+            color: "gray",
+            textAlign: "center",
+            marginBottom: 20,
+          }}
+        >
+          Don't have an account?{" "}
+          <Link href={"./signupEmail"}>
+            <Text style={{ color: "white" }}>Sign up</Text>
+          </Link>
+        </Text>
       </View>
     </SafeAreaView>
   );
