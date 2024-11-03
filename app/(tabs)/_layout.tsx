@@ -5,7 +5,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Octicons from "@expo/vector-icons/Octicons";
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 export default function TabLayout() {
   return (
     <Tabs
@@ -31,9 +31,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Assess",
+          title: "Discover",
           tabBarIcon: ({ color, focused }) => (
-            <MaterialIcons name="assessment" size={24} color={color} />
+            <Ionicons name="search-sharp" size={24} color={color} />
           ),
         }}
       />

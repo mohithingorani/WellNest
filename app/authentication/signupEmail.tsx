@@ -16,7 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/userAtoms";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import { z } from "zod";
 export default function SignUpWithEmail() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -25,25 +25,67 @@ export default function SignUpWithEmail() {
   const [user, setUser] = useRecoilState(userAtom);
   const [loading, setLoading] = useState<boolean>(false);
   const [hidePassword, setHidePassword] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  function handleCreateAccount() {
+  const signupSchema = z.object({
+    name: z.string().min(1, {
+      message: "Name is required",
+    }),
+    email: z.string().email({
+      message: "Invalid email address",
+    }),
+    phoneNumber: z
+      .string()
+      .min(10, {
+        message: "Invalid phone number",
+      })
+      .max(10, { message: "Invalid phone number" }),
+    password: z.string().min(6, {
+      message: "Password must be atleast 6 characters long",
+    }),
+  });
+
+  async function handleCreateAccount() {
+    try {
+      const result = signupSchema.parse({
+        name: name,
+        email: email,
+        phoneNumber: phoneNumber,
+        password: password,
+      });
+      if(result ) {
+        console.log(result);
+      }
+      else{
+        console.log("Invalid input");
+      }
+    } catch (e:any) {
+      console.log(e);
+      setErrorMessage(e.errors[0].message);
+      return;
+    }
+
     setLoading(true);
     try {
-      const account = axios
+      const response = await axios
         .post("http://192.168.29.247:3000/user", {
           name: name,
           email: email,
           phoneNumber: Number(phoneNumber),
           password: password,
         })
-        .then((response) => {
-          console.log(response.data);
+        if(!response.data.error) {
           setLoading(false);
+          console.log(response.data);
           alert("Account created successfully");
           setUser(response.data.userId);
           router.replace("/(tabs)");
-
-        });
+        }
+        else {
+          setLoading(false);
+          alert(response.data.error);
+          setErrorMessage(response.data.error);
+        }
     } catch (e) {
       console.log(e);
     } finally {
@@ -97,7 +139,7 @@ export default function SignUpWithEmail() {
         <Text
           style={{
             color: "gray",
-            marginVertical: 10,
+            marginVertical: 5,
           }}
         >
           Create an account to access therapy and other tools to help you
@@ -152,50 +194,58 @@ export default function SignUpWithEmail() {
           />
         </View>
         <View
-        style={[
-          styles.textInput,
-          {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          },
-        ]}
-      >
-        <TextInput
-          style={{
-            fontSize: 16,
-            color: "white",
-          }}
-          value={password}
-          secureTextEntry={hidePassword ? true : false}
-          onChangeText={setPassword}
-          placeholder="Password (6+ characters)*"
-          placeholderTextColor="gray"
-        />
-        <Ionicons
-          onPress={() => {
-            setHidePassword(!hidePassword);
-          }}
-          name={hidePassword?"eye-off":"eye"}
-          size={24}
-          color="white"
-        />
-      </View>
-        
+          style={[
+            styles.textInput,
+            {
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            },
+          ]}
+        >
+          <TextInput
+            style={{
+              fontSize: 16,
+              color: "white",
+            }}
+            value={password}
+            secureTextEntry={hidePassword ? true : false}
+            onChangeText={setPassword}
+            placeholder="Password (6+ characters)*"
+            placeholderTextColor="gray"
+          />
+          <Ionicons
+            onPress={() => {
+              setHidePassword(!hidePassword);
+            }}
+            name={hidePassword ? "eye-off" : "eye"}
+            size={24}
+            color="white"
+          />
+
+        </View>
+        <Text
+        style={{
+          fontSize: 16,
+          color: "red",
+          marginTop: 10,
+        }}>
+          {errorMessage}
+        </Text>
 
         <View
           style={{
             flexDirection: "column",
             justifyContent: "flex-end",
             flex: 1,
-            marginBottom: 20,
+            marginBottom: 15,
           }}
         >
           <TouchableOpacity
             onPress={handleCreateAccount}
             style={{
               backgroundColor: "rgba(1,126,91,100)",
-              marginBottom: 20,
+              marginBottom: 10,
               paddingVertical: 20,
               borderRadius: 20,
               flexDirection: "row",

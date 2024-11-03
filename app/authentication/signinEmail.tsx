@@ -115,6 +115,7 @@ export default function Signin() {
           style={{
             fontSize: 16,
             color: "white",
+            flex:1
           }}
           value={password}
           secureTextEntry={hidePassword ? true : false}
