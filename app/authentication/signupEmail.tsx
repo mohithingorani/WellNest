@@ -15,6 +15,7 @@ import { useHandler } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../atoms/userAtoms";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignUpWithEmail() {
   const [name, setName] = useState<string>("");
@@ -23,6 +24,8 @@ export default function SignUpWithEmail() {
   const [password, setPassword] = useState<string>("");
   const [user, setUser] = useRecoilState(userAtom);
   const [loading, setLoading] = useState<boolean>(false);
+  const [hidePassword, setHidePassword] = useState<boolean>(true);
+
   function handleCreateAccount() {
     setLoading(true);
     try {
@@ -148,13 +151,37 @@ export default function SignUpWithEmail() {
             style={[styles.textInput, { flex: 1 }]}
           />
         </View>
+        <View
+        style={[
+          styles.textInput,
+          {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          },
+        ]}
+      >
         <TextInput
+          style={{
+            fontSize: 16,
+            color: "white",
+          }}
           value={password}
+          secureTextEntry={hidePassword ? true : false}
           onChangeText={setPassword}
           placeholder="Password (6+ characters)*"
           placeholderTextColor="gray"
-          style={styles.textInput}
         />
+        <Ionicons
+          onPress={() => {
+            setHidePassword(!hidePassword);
+          }}
+          name={hidePassword?"eye-off":"eye"}
+          size={24}
+          color="white"
+        />
+      </View>
+        
 
         <View
           style={{

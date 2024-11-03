@@ -126,7 +126,7 @@ export default function Signin() {
           onPress={() => {
             setHidePassword(!hidePassword);
           }}
-          name={hidePassword?"eye":"eye-off"}
+          name={hidePassword?"eye-off":"eye"}
           size={24}
           color="white"
         />
