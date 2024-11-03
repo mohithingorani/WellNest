@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRecoilState } from "recoil";
@@ -18,7 +19,9 @@ export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
-  const[user,setUser] = useRecoilState(userAtom);
+  const [user, setUser] = useRecoilState(userAtom);
+  const [hidePassword, setHidePassword] = useState<boolean>(false);
+
   function handleLogin() {
     setLoading(true);
     const account = axios
@@ -97,13 +100,37 @@ export default function Signin() {
         placeholderTextColor="gray"
         style={styles.textInput}
       />
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        placeholder="Password*"
-        placeholderTextColor="gray"
-        style={styles.textInput}
-      />
+
+      <View
+        style={[
+          styles.textInput,
+          {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          },
+        ]}
+      >
+        <TextInput
+          style={{
+            fontSize: 16,
+            color: "white",
+          }}
+          value={password}
+          secureTextEntry={hidePassword ? true : false}
+          onChangeText={setPassword}
+          placeholder="Password*"
+          placeholderTextColor="gray"
+        />
+        <Ionicons
+          onPress={() => {
+            setHidePassword(!hidePassword);
+          }}
+          name={hidePassword?"eye":"eye-off"}
+          size={24}
+          color="white"
+        />
+      </View>
       <View
         style={{
           flexDirection: "column",
