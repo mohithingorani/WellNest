@@ -14,43 +14,13 @@ import { RecoilRoot, useRecoilState } from "recoil";
 import { userAtom } from "../atoms/userAtoms";
 import axios from "axios";
 import { QuestionCard } from "@/components/QuestionCard";
+import { useQuestions } from "@/hooks/useQuestions";
 const items = [
   { id: "1", title: "General Mental Health" },
   { id: "2", title: "Quality of life" },
   { id: "3", title: "Neurodivergence" },
   { id: "4", title: "Relationships" },
   { id: "5", title: "Trauma" },
-];
-
-const questionCardArray = [
-  {
-    id: "1",
-    title: "Is it just a bad mood or more?",
-    description:
-      "Prolonged bad mood could indicate that something in our life is off or needs attention.",
-    icon: "emoji-happy",
-  },
-  {
-    id: "2",
-    title: "How to cope with stress?",
-    description:
-      "Stress is a normal part of life, but when it becomes overwhelming, it can cause mental health problems.",
-    icon: "shield",
-  },
-  {
-    id: "3",
-    title: "How to improve your self-esteem?",
-    description:
-      "Self-esteem is how we feel about ourselves and our abilities. It can impact our confidence, relationships, and mental health.",
-    icon: "heart",
-  },
-  {
-    id: "4",
-    title: "How to deal with anxiety?",
-    description:
-      "Anxiety is a normal part of life, but when it becomes overwhelming, it can cause mental health problems. Here you",
-    icon: "brain",
-  },
 ];
 
 export default function AssessScreen() {
@@ -70,6 +40,8 @@ export default function AssessScreen() {
     }
     getName();
   }, []);
+
+  const questions = useQuestions(items[Number(selectedId)-1].title);
 
   if (firstName === null) {
     <View
@@ -107,6 +79,11 @@ export default function AssessScreen() {
             >
               👋 Hi {firstName},
             </Text>
+            <Text style={{
+              color:"white"
+            }}>
+              {JSON.stringify(selectedId)}
+            </Text>
             <Text
               style={{
                 color: "gray",
@@ -137,7 +114,7 @@ export default function AssessScreen() {
             />
           </SafeAreaView>
         }
-        data={questionCardArray}
+        data={questions}
         renderItem={({ item }) => {
           return (
             <QuestionCard title={item.title} description={item.description} />
@@ -158,6 +135,5 @@ const styles = StyleSheet.create({
     marginRight: 10,
     minHeight: 40,
     paddingBottom: 20,
-    
   },
 });
