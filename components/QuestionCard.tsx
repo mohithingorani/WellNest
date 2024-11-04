@@ -2,7 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-export function QuestionCard({}) {
+export function QuestionCard({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
   return (
     <View
       style={{
@@ -12,6 +18,7 @@ export function QuestionCard({}) {
         borderWidth: 1,
         borderRadius: 15,
         padding: 20,
+        marginTop: 20,
       }}
     >
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -20,10 +27,9 @@ export function QuestionCard({}) {
             maxWidth: "70%",
           }}
         >
-          <Text style={styles.headingText}>Is it just a bad mood or more?</Text>
+          <Text style={styles.headingText}>{title}</Text>
           <Text style={styles.paragraphText}>
-            Prolonged bad mood could indicate that something in our life is off
-            or needs attention. Here you....
+            {description.length > 80?description.slice(0,80)+"...":description}
           </Text>
         </View>
         <View
@@ -51,7 +57,7 @@ export function QuestionCard({}) {
             <MaterialIcons
               style={{
                 position: "absolute",
-                top: 4,
+                top: 2,
                 left: 2.5,
               }}
               name="done"
@@ -81,7 +87,7 @@ export function QuestionCard({}) {
               width: 1,
               height: 1,
             },
-            shadowOpacity:1,
+            shadowOpacity: 1,
             elevation: 2,
           }}
         >

@@ -27,31 +27,31 @@ const questionCardArray = [
     id: "1",
     title: "Is it just a bad mood or more?",
     description:
-      "Prolonged bad mood could indicate that something in our life is off or needs attention. Here you....",
+      "Prolonged bad mood could indicate that something in our life is off or needs attention.",
     icon: "emoji-happy",
   },
   {
     id: "2",
     title: "How to cope with stress?",
     description:
-      "Stress is a normal part of life, but when it becomes overwhelming, it can cause mental health problems. Here you....",
+      "Stress is a normal part of life, but when it becomes overwhelming, it can cause mental health problems.",
     icon: "shield",
   },
   {
     id: "3",
     title: "How to improve your self-esteem?",
     description:
-      "Self-esteem is how we feel about ourselves and our abilities. It can impact our confidence, relationships, and mental health. Here you....",
+      "Self-esteem is how we feel about ourselves and our abilities. It can impact our confidence, relationships, and mental health.",
     icon: "heart",
   },
   {
     id: "4",
     title: "How to deal with anxiety?",
     description:
-      "Anxiety is a normal part of life, but when it becomes overwhelming, it can cause mental health problems. Here you....",
+      "Anxiety is a normal part of life, but when it becomes overwhelming, it can cause mental health problems. Here you",
     icon: "brain",
   },
-]
+];
 
 export default function AssessScreen() {
   const handlePress = (id: string) => {
@@ -92,48 +92,58 @@ export default function AssessScreen() {
 
   return (
     <RecoilRoot>
-      <SafeAreaView style={styles.outerContainer}>
-        <Text
-          style={{
-            color: "white",
-            marginHorizontal: 20,
-            fontSize: 26,
-            fontWeight: "bold",
-            marginTop: 20,
-          }}
-        >
-          👋 Hi {firstName},
-        </Text>
-        <Text
-          style={{
-            color: "gray",
-            marginHorizontal: 20,
-            fontSize: 16,
-            fontWeight: "regular",
-            marginTop: 10,
-            marginBottom: 10,
-          }}
-        >
-          It's a good day to discover yourself.
-        </Text>
+      <FlatList
+        style={styles.outerContainer}
+        ListHeaderComponent={
+          <SafeAreaView>
+            <Text
+              style={{
+                color: "white",
+                marginHorizontal: 20,
+                fontSize: 26,
+                fontWeight: "bold",
+                marginTop: 20,
+              }}
+            >
+              👋 Hi {firstName},
+            </Text>
+            <Text
+              style={{
+                color: "gray",
+                marginHorizontal: 20,
+                fontSize: 16,
+                fontWeight: "regular",
+                marginTop: 10,
+                marginBottom: 10,
+              }}
+            >
+              It's a good day to discover yourself.
+            </Text>
 
-        <PastReportCard />
-        <FlatList
-          data={items}
-          renderItem={({ item }) => (
-            <AssessButton
-              selected={item.id === selectedId}
-              onPress={() => handlePress(item.id)}
-              text={item.title}
+            <PastReportCard />
+            <FlatList
+              data={items}
+              renderItem={({ item }) => (
+                <AssessButton
+                  selected={item.id === selectedId}
+                  onPress={() => handlePress(item.id)}
+                  text={item.title}
+                />
+              )}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              style={styles.flatListStyle}
             />
-          )}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          style={styles.flatListStyle}
-        />
-        <QuestionCard />
-      </SafeAreaView>
+          </SafeAreaView>
+        }
+        data={questionCardArray}
+        renderItem={({ item }) => {
+          return (
+            <QuestionCard title={item.title} description={item.description} />
+          );
+        }}
+      />
     </RecoilRoot>
   );
 }
@@ -146,6 +156,8 @@ const styles = StyleSheet.create({
   flatListStyle: {
     marginLeft: 20,
     marginRight: 10,
-    maxHeight: 60,
+    minHeight: 40,
+    paddingBottom: 20,
+    
   },
 });
