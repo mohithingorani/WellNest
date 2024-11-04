@@ -28,7 +28,7 @@ export default function AssessScreen() {
     setSelectedId(id);
   };
 
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>("1");
   const [user, setUser] = useRecoilState(userAtom);
   const [firstName, setFirstName] = useState<string | null>(null);
   useEffect(() => {
@@ -82,7 +82,6 @@ export default function AssessScreen() {
             <Text style={{
               color:"white"
             }}>
-              {JSON.stringify(selectedId)}
             </Text>
             <Text
               style={{

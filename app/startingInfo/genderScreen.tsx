@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
- const data = [
+const data = [
   {
     id: 1,
     option: "Male",
@@ -45,6 +45,21 @@ export default function GennderScreen() {
         paddingHorizontal: 20,
       }}
     >
+      <TouchableOpacity
+        onPress={() => router.push("/authentication/signupEmail")}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontSize: 20,
+            textAlign: "right",
+            paddingRight: 10,
+            paddingTop: 10,
+          }}
+        >
+          Skip
+        </Text>
+      </TouchableOpacity>
       <Text style={styles.headingText}>How do you identify?</Text>
       <Text style={styles.subHeadingText}>
         Our biology has an impact on our mental health too.

@@ -20,7 +20,7 @@ export default function InsightsScreen() {
           padding: 10,
           textAlign: "center",
           backgroundColor: "rgba(32,161,141,100)",
-          borderRadius: 10,
+          borderRadius: 10,   
           margin: 10
         }}>Sign out</Text>
       </TouchableOpacity>
