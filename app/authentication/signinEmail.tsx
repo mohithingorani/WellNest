@@ -118,7 +118,7 @@ export default function Signin() {
             flex:1
           }}
           value={password}
-          secureTextEntry={hidePassword ? true : false}
+          secureTextEntry={hidePassword}
           onChangeText={setPassword}
           placeholder="Password*"
           placeholderTextColor="gray"

@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 import axios from "axios";
-import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 
 export default function TherapyScreen() {
